@@ -22,18 +22,18 @@ export default function Home() {
         <p className={styles.code}>function release(address payable account) public virtual </p>
 
         <div className={styles.grid}>
-          <a href="/split" className={styles.card}>
-            <h2>Split &rarr;</h2>
-            <p>Split payments among a group of accounts.</p>
-          </a>
-
-          <a href="/deploy" className={styles.card}>
-            <h2>Deploy &rarr;</h2>
+          <a href="/create" className={styles.card}>
+            <h2>Create New &rarr;</h2>
             <p>Deploy a new contract and any EVM.</p>
           </a>
 
+          <a href="/split" className={styles.card}>
+            <h2>Split Existing &rarr;</h2>
+            <p>Split payments among a group of accounts.</p>
+          </a>
+
           <a target="_blank" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/finance/PaymentSplitter.sol" className={styles.card}>
-            <h2>Github &rarr;</h2>
+            <h2>Source Code &rarr;</h2>
             <p>Build on a solid foundation of community-vetted code.</p>
           </a>
         </div>
@@ -41,7 +41,7 @@ export default function Home() {
 
       <footer className={styles.footer}>
         <a href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app" target="_blank" rel="noopener noreferrer">
-          Powered by {" "}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>

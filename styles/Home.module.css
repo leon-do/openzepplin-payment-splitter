@@ -60,7 +60,7 @@
   background: #fafafa;
   border-radius: 5px;
   padding: 0.75rem;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
 }
 
@@ -73,6 +73,7 @@
 }
 
 .card {
+  width: 70.7%; /* b/c of txhash */
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
@@ -81,7 +82,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  overflow-wrap: break-word;
 }
 
 .card:hover,
@@ -101,20 +102,41 @@
   line-height: 1.5;
 }
 
+.card input {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  width: 100%;
+}
+
 .logo {
   height: 1em;
   margin-left: 0.5rem;
 }
 
-.button {
+.bigButton {
   border: 1px solid #eaeaea;
   padding: 2rem;
   border-radius: 10px;
 }
 
-.button:hover {
+.bigButton:hover {
   color: #0060e9;
   cursor: pointer;
+}
+
+.smallButton {
+  border: 1px solid #0060e9;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.smallButton:hover {
+  transition: 0.5s;
+  background: #0060e9;
+  cursor: pointer;
+  color:#eaeaea
 }
 
 @media (max-width: 600px) {

@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-export default function Deploy() {
+export default function Create() {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +13,7 @@ export default function Deploy() {
 
       <main className={styles.main}>
         <h1 className={[styles.title, styles.border]}>
-           Deploy 
+           Create 
         </h1>
       </main>
 
