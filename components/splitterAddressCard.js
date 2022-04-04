@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReleaseNativeTokenCard from "./releaseNativeTokenCard";
+import ERC20AddressCard from "./erc20AddressCard";
 import styles from "../styles/Home.module.css";
 import { ethers } from "ethers";
 import abi from "../contract/abi.json";
@@ -50,6 +51,7 @@ export default function SplitterAddressCard({ provider }) {
         <code>{readContractMsg}</code>
       </div>
       {nativeTokenShares == "" ? <></> : <ReleaseNativeTokenCard provider={provider} nativeTokenShares={nativeTokenShares} nativeTokenMsg={nativeTokenMsg} contractAddress={contractAddress} />}
+      {nativeTokenShares == "" ? <></> : <ERC20AddressCard provider={provider} contractAddress={contractAddress} />}
     </>
   );
 }
