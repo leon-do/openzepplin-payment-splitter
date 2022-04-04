@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import Link from 'next/link'
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 
 export default function Home() {
@@ -23,14 +23,18 @@ export default function Home() {
         <p className={styles.code}>function release(address payable account) public virtual </p>
 
         <div className={styles.grid}>
-          <Link href="/create" className={styles.card} passHref>
-            <h2>Create New &rarr;</h2>
-            <p>Deploy a new contract and any EVM.</p>
+          <Link href="/create" passHref>
+            <a className={styles.card}>
+              <h2>Create New &rarr;</h2>
+              <p>Deploy a new contract and any EVM.</p>
+            </a>
           </Link>
 
-          <Link href="/split" className={styles.card} passHref>
-            <h2>Split Existing &rarr;</h2>
-            <p>Split payments among a group of accounts.</p>
+          <Link href="/split" passHref>
+            <a className={styles.card}>
+              <h2>Split Existing &rarr;</h2>
+              <p>Split payments among a group of accounts.</p>
+            </a>
           </Link>
 
           <a target="_blank" rel="noreferrer" href="https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/finance/PaymentSplitter.sol" className={styles.card}>
