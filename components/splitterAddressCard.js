@@ -19,7 +19,7 @@ export default function SplitterAddressCard({ provider }) {
   }, []);
 
   const readContract = async (_contractAddress) => {
-    setReadContractMsg("");
+     setReadContractMsg("");
     // connect to walletsplitter
     const contract = new ethers.Contract(_contractAddress, abi, provider.getSigner());
     try {
@@ -36,7 +36,8 @@ export default function SplitterAddressCard({ provider }) {
       // set the contract address to local storage
       window.localStorage.setItem("contractAddress", _contractAddress);
     } catch (error) {
-      setReadContractMsg(error.message);
+      console.error(error)
+      setReadContractMsg(error.reason);
     }
   };
 

@@ -1,6 +1,8 @@
 import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
+import abi from "../contract/abi.json";
+import bytecode from "../contract/bytecode.json";
 
 export default function PayeeCard({ provider }) {
   const [userAddress, setUserAddress] = useState("");
@@ -51,10 +53,8 @@ export default function PayeeCard({ provider }) {
   }
 
   function isValidContract() {
-    setSubmitMsg("");
     // check if shares add up to 100
     const totalShares = payees.reduce((acc, cur) => Number(acc) + Number(cur.shares), 0);
-    console.log(totalShares)
     if (totalShares !== 100) {
       setSubmitMsg("Shares must add up to 100");
       return false;
@@ -70,10 +70,22 @@ export default function PayeeCard({ provider }) {
     return true;
   }
 
-  function deployContract() {
-    console.log(payees);
+  async function submitContract() {
+    setSubmitMsg("");
     if (!isValidContract()) return;
-    console.log("deploying contract");
+    try {
+      console.log("deploying contract", abi, bytecode);
+      const addresses = payees.map((payee) => payee.address);
+      const shares = payees.map((payee) => payee.shares);
+      const factory = new ethers.ContractFactory(abi, bytecode.object, provider.getSigner(userAddress))
+      const contract = await factory.deploy(addresses, shares);
+      setSubmitMsg("Contract deployed at " + contract.address);
+      window.localStorage.setItem("contractAddress", contract.address);
+    } catch (error) {
+      console.error(error)
+      setSubmitMsg(error.reason);
+    }
+
   }
 
   return (
@@ -105,7 +117,7 @@ export default function PayeeCard({ provider }) {
           </tr>
         </tbody>
       </table>
-      <h3 className={styles.smallButton} onClick={() => deployContract()}>
+      <h3 className={styles.smallButton} onClick={() => submitContract()}>
         Submit
       </h3>
       <code>{submitMsg}</code>

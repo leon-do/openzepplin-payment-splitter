@@ -35,7 +35,8 @@ export default function ERC20AddressCard({ provider, contractAddress }) {
       // set the contract address to local storage
       window.localStorage.setItem("erc20Address", _erc20Address);
     } catch (error) {
-      setErc20Msg(error.message);
+      console.error(error)
+      setErc20Msg(error.reason);
     }
   };
 

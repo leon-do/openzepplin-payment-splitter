@@ -15,6 +15,7 @@ export default function ReleaseNativeTokenCard({ provider, nativeTokenShares, na
       const response = await contract["release(address)"](userAddress);
       setTokenMsg(response.hash);
     } catch (error) {
+      console.error(error)
       setTokenMsg(error.reason);
     }
   };
@@ -22,7 +23,7 @@ export default function ReleaseNativeTokenCard({ provider, nativeTokenShares, na
   return (
     <div className={styles.card}>
       <h2>Native Tokens</h2>
-      <p>Amount To Release: {-1 * ethers.utils.formatEther(tokenShares)}</p>
+      <p>Amount To Release: {ethers.utils.formatEther(tokenShares)}</p>
       <h3 className={styles.smallButton} onClick={() => releaseNativeTokens()}>
         Release
       </h3>
