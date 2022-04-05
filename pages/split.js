@@ -3,8 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import { ethers } from "ethers";
-import AddressCard from "../components/addressCard";
-import ChainCard from "../components/chainCard";
+import UserInfoCard from "../components/userInfoCard";
 import SplitterAddressCard from "../components/splitterAddressCard";
 
 export default function Split() {
@@ -47,11 +46,13 @@ export default function Split() {
 
       <main className={styles.main}>
         {isConnected ? (
-          <div className={styles.grid}>
-            <AddressCard provider={provider} />
-            <ChainCard provider={provider} />
-            <SplitterAddressCard provider={provider} />
-          </div>
+          <>
+            <h1 className={styles.title}>Payment Splitter</h1>
+            <div className={styles.grid}>
+              <UserInfoCard provider={provider} />
+              <SplitterAddressCard provider={provider} />
+            </div>
+          </>
         ) : (
           <h2 className={styles.bigButton} onClick={handleConnect}>
             Connect Wallet &rarr;

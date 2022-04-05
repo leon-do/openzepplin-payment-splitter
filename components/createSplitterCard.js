@@ -1,10 +1,12 @@
 import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import abi from "../contract/abi.json";
 import bytecode from "../contract/bytecode.json";
 
 export default function CreateSplitterCard({ provider }) {
+  const [isDeployed, setIsDeployed] = useState(false);
   const [userAddress, setUserAddress] = useState("");
   const [submitMsg, setSubmitMsg] = useState("");
   const [payees, setPayees] = useState([
@@ -74,13 +76,13 @@ export default function CreateSplitterCard({ provider }) {
     setSubmitMsg("");
     if (!isValidContract()) return;
     try {
-      console.log("deploying contract", abi, bytecode);
       const addresses = payees.map((payee) => payee.address);
       const shares = payees.map((payee) => payee.shares);
       const factory = new ethers.ContractFactory(abi, bytecode.object, provider.getSigner(userAddress));
       const contract = await factory.deploy(addresses, shares);
-      setSubmitMsg("Contract deployed at " + contract.address);
+      setSubmitMsg("Save Spliiter Address: " + contract.address);
       window.localStorage.setItem("contractAddress", contract.address);
+      setIsDeployed(true);
     } catch (error) {
       console.error(error);
       setSubmitMsg(error.reason);
@@ -124,6 +126,15 @@ export default function CreateSplitterCard({ provider }) {
         Submit
       </h3>
       <code>{submitMsg}</code>
+      {isDeployed ? (
+        <Link href="/split">
+        <h3 className={styles.smallButton}>
+          View Splitter
+        </h3>
+        </Link>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

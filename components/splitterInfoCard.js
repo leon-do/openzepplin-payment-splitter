@@ -29,7 +29,6 @@ export default function SplitterInfoCard({ provider, contractAddress }) {
     // get the shares of payees
     let newShares = [];
     for (let i = 0; i < newPayees.length; i++) {
-      console.log(newPayees[i]);
       const share = await contract["shares(address)"](newPayees[i]);
       newShares.push(share.toString());
     }

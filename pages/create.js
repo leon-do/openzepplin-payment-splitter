@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import CreateSplitterCard from "../components/createSplitterCard";
-import ChainCard from "../components/chainCard";
+import UserInfoCard from "../components/userInfoCard";
 
 export default function Create() {
   const [provider, setProvider] = useState(null);
@@ -46,10 +46,14 @@ export default function Create() {
 
       <main className={styles.main}>
         {isConnected ? (
-          <div className={styles.grid}>
-            <ChainCard provider={provider} />
-            <CreateSplitterCard provider={provider} />
-          </div>
+          <>
+            <h1 className={styles.title}>Payment Creater</h1>
+
+            <div className={styles.grid}>
+              <UserInfoCard provider={provider} />
+              <CreateSplitterCard provider={provider} />
+            </div>
+          </>
         ) : (
           <h2 className={styles.bigButton} onClick={handleConnect}>
             Connect Wallet &rarr;
