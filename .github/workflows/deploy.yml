@@ -22,7 +22,7 @@ jobs:
 
       - name: Build
         run: |
-          yarn i
+          yarn
           yarn build
           yarn export
 
