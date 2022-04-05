@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import SplitterInfoCard from "./splitterInfoCard";
 import ReleaseNativeTokenCard from "./releaseNativeTokenCard";
 import ERC20AddressCard from "./erc20AddressCard";
 import styles from "../styles/Home.module.css";
@@ -20,7 +21,6 @@ export default function SplitterAddressCard({ provider }) {
 
   const readContract = async (_contractAddress) => {
     setReadContractMsg("");
-    console.log(contractAddress, _contractAddress);
     // connect to walletsplitter
     const contract = new ethers.Contract(_contractAddress, abi, provider.getSigner());
     try {
@@ -54,6 +54,7 @@ export default function SplitterAddressCard({ provider }) {
         </h3>
         <code>{readContractMsg}</code>
       </div>
+      {nativeTokenShares == "" ? <></> : <SplitterInfoCard provider={provider} contractAddress={contractAddress} />}
       {nativeTokenShares == "" ? <></> : <ReleaseNativeTokenCard provider={provider} nativeTokenShares={nativeTokenShares} nativeTokenMsg={nativeTokenMsg} contractAddress={contractAddress} />}
       {nativeTokenShares == "" ? <></> : <ERC20AddressCard provider={provider} contractAddress={contractAddress} />}
     </>

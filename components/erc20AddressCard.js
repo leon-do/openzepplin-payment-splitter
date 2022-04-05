@@ -14,7 +14,7 @@ export default function ERC20AddressCard({ provider, contractAddress }) {
     if (localErc20Address) {
       setErc20Address(localErc20Address);
     }
-  });
+  }, []);
 
   const readContract = async (_erc20Address) => {
     setErc20Msg("");
