@@ -3,7 +3,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import { ethers } from "ethers";
-import PayeeCard from "../components/payeeCard";
+import CreateSplitterCard from "../components/createSplitterCard";
 import ChainCard from "../components/chainCard";
 
 export default function Create() {
@@ -48,7 +48,7 @@ export default function Create() {
         {isConnected ? (
           <div className={styles.grid}>
             <ChainCard provider={provider} />
-            <PayeeCard provider={provider} />
+            <CreateSplitterCard provider={provider} />
           </div>
         ) : (
           <h2 className={styles.bigButton} onClick={handleConnect}>

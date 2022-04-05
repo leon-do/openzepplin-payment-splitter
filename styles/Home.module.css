@@ -136,7 +136,30 @@
   transition: 0.5s;
   background: #0060e9;
   cursor: pointer;
-  color:#eaeaea
+  color: #eaeaea;
+}
+
+/* in createSplitterCard */
+.plusMinusBtn {
+  border: none;
+  text-align: right;
+}
+
+.plusMinusBtn:hover {
+  cursor: pointer;
+}
+
+.splitterAddrInput {
+  border: none;
+  padding: 8px;
+}
+
+.splitterAddrInput:focus {
+  outline: none;
+}
+
+.splitterAddrColumn {
+  width: 85%;
 }
 
 @media (max-width: 600px) {

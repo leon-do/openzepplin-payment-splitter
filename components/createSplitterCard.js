@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import abi from "../contract/abi.json";
 import bytecode from "../contract/bytecode.json";
 
-export default function PayeeCard({ provider }) {
+export default function CreateSplitterCard({ provider }) {
   const [userAddress, setUserAddress] = useState("");
   const [submitMsg, setSubmitMsg] = useState("");
   const [payees, setPayees] = useState([
@@ -77,24 +77,23 @@ export default function PayeeCard({ provider }) {
       console.log("deploying contract", abi, bytecode);
       const addresses = payees.map((payee) => payee.address);
       const shares = payees.map((payee) => payee.shares);
-      const factory = new ethers.ContractFactory(abi, bytecode.object, provider.getSigner(userAddress))
+      const factory = new ethers.ContractFactory(abi, bytecode.object, provider.getSigner(userAddress));
       const contract = await factory.deploy(addresses, shares);
       setSubmitMsg("Contract deployed at " + contract.address);
       window.localStorage.setItem("contractAddress", contract.address);
     } catch (error) {
-      console.error(error)
+      console.error(error);
       setSubmitMsg(error.reason);
     }
-
   }
 
   return (
     <div className={styles.card}>
-      <h2>Payment Splitter Table</h2>
+      <h2>Create Payment Splitter</h2>
       <table>
         <thead>
           <tr>
-            <th>Address</th>
+            <th className={styles.splitterAddrColumn}>Address</th>
             <th>Shares</th>
           </tr>
         </thead>
@@ -102,18 +101,22 @@ export default function PayeeCard({ provider }) {
           {payees.map((payee, index) => (
             <tr key={index}>
               <td>
-                <input value={payee.address} onChange={(e) => updatePayeeAddress(e, index)}></input>
+                <input value={payee.address} onChange={(e) => updatePayeeAddress(e, index)} className={styles.splitterAddrInput}></input>
               </td>
               <td>
-                <input value={payee.shares} onChange={(e) => updatePayeeShares(e, index)}></input>
+                <input type="number" value={payee.shares} onChange={(e) => updatePayeeShares(e, index)} className={styles.splitterAddrInput}></input>
               </td>
-              <td onClick={() => deletePayee(index)}>Delete</td>
+              <td onClick={() => deletePayee(index)} className={styles.plusMinusBtn}>
+                ➖
+              </td>
             </tr>
           ))}
           <tr>
             <td></td>
             <td></td>
-            <td onClick={() => addPayee()}>Add</td>
+            <td onClick={() => addPayee()} className={styles.plusMinusBtn}>
+              ➕
+            </td>
           </tr>
         </tbody>
       </table>
