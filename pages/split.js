@@ -1,10 +1,10 @@
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import UserInfoCard from "../components/userInfoCard";
 import SplitterAddressCard from "../components/splitterAddressCard";
+import Footer from "../components/footer";
 
 export default function Split() {
   const [provider, setProvider] = useState(null);
@@ -60,14 +60,7 @@ export default function Split() {
         )}
       </main>
 
-      <footer className={styles.footer}>
-        <a href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app" target="_blank" rel="noopener noreferrer">
-          Powered by{" "}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+     <Footer /> 
     </div>
   );
 }
